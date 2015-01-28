@@ -1,14 +1,11 @@
 if (Meteor.isClient) {
 
-  Template.main.rooms = function () {
-      return Room.find().fetch();
-  }
+  Template.main.helpers({
+      rooms: function () {return Room.find().fetch()}
+  });
 
-  Template.room.room_status = function () {
-    return BusyTime.getLast(this.room_id).status;
-  }
-
-  Template.room.busy = function () {
-    return BusyTime.getLast(this.room_id).status == BusyTime.BUSY;
-  }
+  Template.room.helpers({
+      room_status: function () { return BusyTime.getLast(this.room_id).status;},
+      busy: function () { return BusyTime.getLast(this.room_id).status == BusyTime.BUSY;}
+  });
 }
