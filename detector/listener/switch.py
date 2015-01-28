@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import signals
 
 
-def Light(object):
+class Light(object):
 
     def __init__(self, gpio_nb, name, paired_detector):
         self.name = name

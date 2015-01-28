@@ -20,7 +20,7 @@ TIME_TO_SLEEP = 0.01
 
 def initialize_detection_pairs():
     detectors = []
-    for pair, values in settings.DETECTION_PAIRS:
+    for pair, values in settings.DETECTION_PAIRS.iteritems():
         print "Initializing pair {}".format(pair)
         detector = PirDetector(values["pir"], pair)
         detector.setup()
