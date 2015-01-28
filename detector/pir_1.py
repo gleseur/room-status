@@ -34,16 +34,16 @@ try:
 
   # Loop until PIR output is 0
   while GPIO.input(GPIO_PIR)==1:
-    Current_State  = 0    
+    Current_State  = 0
 
-  print "  Ready"     
-    
+  print "  Ready"
+
   # Loop until users quits with CTRL-C
   while True :
-   
+
     # Read PIR state
     Current_State = GPIO.input(GPIO_PIR)
-   
+
     if Current_State==1 and Previous_State==0:
       # PIR is triggered
       print "  Motion detected!"
@@ -53,11 +53,11 @@ try:
       # PIR has returned to ready state
       print "  Ready"
       Previous_State=0
-      
+
     # Wait for 10 milliseconds
-    time.sleep(0.01)      
-      
+    time.sleep(0.01)
+
 except KeyboardInterrupt:
-  print "  Quit" 
+  print "  Quit"
   # Reset GPIO settings
   GPIO.cleanup()
