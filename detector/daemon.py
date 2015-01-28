@@ -14,6 +14,7 @@ from busy_processor import RoomBusyStatus
 import settings
 
 # Importing motion listeners
+from listener.api import ApiListener
 from listener.switch import Light
 import listener.raspberry_out
 
@@ -27,8 +28,11 @@ def initialize_detection_pairs():
         detector = PirDetector(values["pir"], pair_name)
         detector.setup()
         detectors.append(detector)
-        room_statuses.append(RoomBusyStatus(pair_name, values["free_time"], values["lock_time"], detector))
+        # Subscribing listeners
+        rbs = RoomBusyStatus(pair_name, values["free_time"], values["lock_time"], detector)
+        room_statuses.append(rbs)
         Light(values["light"], pair_name, detector)
+        ApiListener(values["room_id"], rbs)
     return detectors, room_statuses
 
 def run_daemon():
