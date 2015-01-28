@@ -12,11 +12,13 @@
 <template name="main">
   {{#if equals view "stats"}}
     <section class="stats_content">
+    <div class="btn">View Room Status</div>
     {{#each stats}}
       {{> stat}}
     {{/each}}
     </section>
   {{else}}
+    <div class="btn">View Stats</div>
     {{#each rooms}}
       {{> room}}
     {{/each}}

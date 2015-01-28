@@ -8,6 +8,22 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
+.btn {
+  position: absolute;
+  bottom: 30px;
+  right: 50%;
+  width: 200px;
+  margin-right: -115px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 34px;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 section {
   display: table;
   width: 50%;
