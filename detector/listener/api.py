@@ -25,6 +25,7 @@ class ApiListener(object):
     def send_to_api(self, status):
         url = settings.METEOR_API_URL + "/{room_id}/{status}".format(room_id=self.room_id, status=status)
         r = requests.get(settings.METEOR_API_URL, params={"pwd": settings.METEOR_PASSWORD})
+        print "Response status {}".format(r.status_code)
 
     def send_busy_to_api(self):
         self.send_to_api("busy")
