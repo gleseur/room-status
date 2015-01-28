@@ -15,9 +15,9 @@ if (Meteor.isServer) {
     Meteor.publish("busy_times", function () {
         return BusyTime.find({
             opened_at: {
-                $gte: moment().subtract('month', 1).toDate()
+                $gte: moment().subtract(1, 'month').toDate()
             }
-        });
+        }).fetch();
     });
 }
 
@@ -25,8 +25,21 @@ if (Meteor.isClient) {
     Meteor.subscribe("busy_times");
 }
 
+BusyTime.BUSY == "busy";
+BusyTime.FREE == "free";
+BusyTime.getLast = function (room_id) {
+    return BusyTime.find(
+        {room_id: room_id},
+        {
+            sort: {opened_at: -1},
+            limit: 1
+        }
+    )[0];
+}
 
 Room = new Meteor.Collection('room');
+// room_id
+// name
 // Nothing allowed
 // publish all
 if (Meteor.isServer) {
