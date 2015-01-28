@@ -47,3 +47,6 @@ if __name__ == "__main__":
         print "Cleaning up GPIO"
         GPIO.cleanup()
         print "Quitting ..."
+    except Exception as e:
+        GPIO.cleanup()
+        raise
