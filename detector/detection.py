@@ -4,6 +4,8 @@ detector
 """
 from __future__ import unicode_literals
 
+import time
+
 import RPi.GPIO as GPIO
 
 import signals
