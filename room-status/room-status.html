@@ -10,9 +10,17 @@
 
 
 <template name="main">
-  {{#each rooms}}
-    {{> room}}
-  {{/each}}
+  {{#if equals view "stats"}}
+    <section class="stats_content">
+    {{#each stats}}
+      {{> stat}}
+    {{/each}}
+    </section>
+  {{else}}
+    {{#each rooms}}
+      {{> room}}
+    {{/each}}
+  {{/if}}
 </template>
 
 <template name="room">
@@ -23,4 +31,11 @@
     <div class="icon icon-room-{{name}}-free"></div>
     {{/if}}
   </section>
+</template>
+
+<template name="stat">
+  <div class="stats stats-{{className}}">
+    <div class="name">{{name}}</div>
+    <div class="value">{{value}}</div>
+  </div>
 </template>
