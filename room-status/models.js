@@ -52,7 +52,6 @@ if (Meteor.isClient) {
 }
 
 Stats = new Meteor.Collection('stats');
-// room_id
 // name
 // text
 // value
