@@ -1,6 +1,12 @@
 if (Meteor.isClient) {
+  Template.registerHelper("equals", function (a, b) {
+      return (a == b);
+  });
+
+  Session.setDefault('view', 'main');
 
   Template.main.helpers({
+      view: function () {return Session.get('view')},
       rooms: function () {return Room.find().fetch()},
       stats: function () {return [
         {name: "How Much Men's Today?", className: "man_count_day", value: 10},

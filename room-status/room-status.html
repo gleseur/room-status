@@ -10,7 +10,7 @@
 
 
 <template name="main">
-  {{#if true}}
+  {{#if equals view "stats"}}
     <section class="stats_content">
     {{#each stats}}
       {{> stat}}
