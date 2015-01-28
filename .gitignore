@@ -2,3 +2,4 @@ room-status/.meteor/local
 root-status/.meteor/meteorite
 *.pyc
 *.swp
+*local_settings.py
