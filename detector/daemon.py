@@ -27,7 +27,7 @@ def initialize_detection_pairs():
         detector = PirDetector(values["pir"], pair_name)
         detector.setup()
         detectors.append(detector)
-        room_statuses.append(RoomBusyStatus(pair_name, values["free_time"], detector))
+        room_statuses.append(RoomBusyStatus(pair_name, values["free_time"], value["lock_time"], detector))
         Light(values["light"], pair_name, detector)
     return detectors, room_statuses
 
