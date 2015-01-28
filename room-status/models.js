@@ -17,7 +17,7 @@ if (Meteor.isServer) {
             opened_at: {
                 $gte: moment().subtract(1, 'month').toDate()
             }
-        }).fetch();
+        });
     });
 }
 
@@ -34,7 +34,7 @@ BusyTime.getLast = function (room_id) {
             sort: {opened_at: -1},
             limit: 1
         }
-    )[0];
+    ).fetch()[0];
 }
 
 Room = new Meteor.Collection('room');

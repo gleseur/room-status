@@ -4,21 +4,21 @@ if (Meteor.isServer) {
         BusyTime.remove({});
         Room.insert({
             room_id: 1,
-            name: "Boys"
+            name: "man"
         });
         Room.insert({
             room_id: 2,
-            name: "Girls"
+            name: "woman"
         });
         BusyTime.insert({
             room_id: 1,
             opened_at: moment().toDate(),
-            status: BusyTime.BUSY
+            status: "free"
         });
         BusyTime.insert({
             room_id: 2,
             opened_at: moment().toDate(),
-            status: BusyTime.FREE
+            status: "busy"
         });
     });
 }
