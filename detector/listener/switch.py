@@ -26,10 +26,11 @@ class Light(object):
         self._paired_detector = paired_detector
         GPIO.setup(gpio_nb, GPIO.OUT)
         # Subscribing to signals
-        self.subscribe_signals()
         SUBSCRIBED_LISTENERS[name] = self
+        self.subscribe_signals()
 
     def subscribe_signals(self):
+        switch_off(self._paired_detector)
         signals.setup.connect(switch_off, sender=self._paired_detector)
         signals.busy.connect(switch_on, sender=self._paired_detector)
         signals.room_freed.connect(switch_off, sender=self._paired_detector)

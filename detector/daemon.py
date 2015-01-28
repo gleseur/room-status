@@ -52,5 +52,6 @@ if __name__ == "__main__":
         GPIO.cleanup()
         print "Quitting ..."
     except Exception as e:
+        print "Exception {}, cleaning up GPIO".format(e)
         GPIO.cleanup()
         raise
