@@ -3,13 +3,17 @@ This is the daemon that must be launched in order to detect motion
 and launch signals.
 """
 from __future__ import unicode_literals
-from detection import PirDetector
+
+import time
 
 import RPi.GPIO as GPIO
-import time
+GPIO.setmode(GPIO.BCM)
+
+from detection import PirDetector
 
 # Importing motion listeners
 import listener.raspberry_out
+import listener.switch
 
 TIME_TO_SLEEP = 0.01
 

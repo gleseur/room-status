@@ -20,7 +20,6 @@ class PirDetector(object):
         self.previous_state = 0
 
     def setup(self):
-        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.GPIO_PIR, GPIO.IN)
         while GPIO.input(self.GPIO_PIR) == 1:
             time.sleep(0.01)
