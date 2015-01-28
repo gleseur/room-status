@@ -34,6 +34,6 @@ class ApiListener(object):
         signals.room_freed.connect(send_freed_to_api, sender=self.paired_rbs)
 
     def send_to_api(self, status):
-        url = settings.METEOR_API_URL + "/{room_id}/{status}".format(room_id=self.room_id, status=status)
-        r = requests.get(settings.METEOR_API_URL, params={"pwd": settings.METEOR_PASSWORD})
+        url = settings.METEOR_API_URL + "/set_status/{room_id}/{status}".format(room_id=self.room_id, status=status)
+        r = requests.get(url, params={"pwd": settings.METEOR_PASSWORD})
         print "Response status {}".format(r.status_code)
