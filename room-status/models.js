@@ -6,6 +6,7 @@ BusyTime = new Meteor.Collection('busy_time');
  *  - room_id: mongoid of the corresponding room object
  *  - opened_at: datetime indicating when it started
  *  - closed_at: end_time on when it ended
+ *  - status: "free" or "busy"
  */
 
 // Nothing is allowed
