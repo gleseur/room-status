@@ -27,14 +27,14 @@ class PirDetector(object):
     def detect_motion(self):
         self.current_state = GPIO.input(self.GPIO_PIR)
         if self._has_detected_new_motion():
+            print "Someone's in"
             self.previous_state = 1
         if self._has_returned_to_idle():
+            print "Is somebody out there"
             self.previous_state = 0
 
     def _has_detected_new_motion(self):
-        print "Someone's in"
         return self.current_state == 1 and self.previous_state == 0
 
     def _has_returned_to_idle(self):
-        print "Is somebody out there"
         return self.current_state == 0 and self.previous_state == 1

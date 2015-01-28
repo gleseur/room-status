@@ -5,7 +5,10 @@ and launch signals.
 from __future__ import unicode_literals
 from detection import PirDetector
 
-TIME_TO_SLEEP = 1
+import RPi.GPIO as GPIO
+import time
+
+TIME_TO_SLEEP = 0.01
 
 def run_daemon():
     print "Starting Detector daemon"
@@ -13,7 +16,7 @@ def run_daemon():
     detector.setup()
     while True:
         detector.detect_motion()
-        time.sleep(0.01)
+        time.sleep(TIME_TO_SLEEP)
 
 if __name__ == "__main__":
     try:
