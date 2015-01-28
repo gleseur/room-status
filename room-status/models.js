@@ -50,3 +50,21 @@ if (Meteor.isServer) {
 if (Meteor.isClient) {
     Meteor.subscribe("rooms");
 }
+
+Stats = new Meteor.Collection('stats');
+// room_id
+// name
+// text
+// value
+
+// Nothing allowed
+// publish all
+if (Meteor.isServer) {
+    Meteor.publish("stats", function () {
+        return Stats.find();
+    });
+}
+
+if (Meteor.isClient) {
+    Meteor.subscribe("stats");
+}
