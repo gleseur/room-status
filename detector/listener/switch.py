@@ -17,13 +17,11 @@ class Light(object):
 
     def subscribe_signals(self):
         signals.setup.connect(self.switch_off, sender=self._paired_detector)
-        signals.motion.connect(self.switch_on, sender=self._paired_detector)
-        signals.idle.connect(self.switch_off, sender=self._paired_detector)
+        signals.busy.connect(self.switch_on, sender=self._paired_detector)
+        signals.room_freed.connect(self.switch_off, sender=self._paired_detector)
 
     def switch_off(sender):
-        print "swiching off {} (class is {})".format(sender.name, self.name)
         GPIO.output(self.gpio_nb, GPIO.HIGH)
 
     def switch_on(sender):
-        print "swiching on {} (class is {})".format(sender.name, self.name)
         GPIO.output(self.gpio_nb, GPIO.LOW)
