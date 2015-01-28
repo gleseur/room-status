@@ -10,20 +10,29 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
 from detection import PirDetector
+import settings
 
 # Importing motion listeners
+from listener.switch import Light
 import listener.raspberry_out
-import listener.switch
 
 TIME_TO_SLEEP = 0.01
 
+def initialize_detection_pairs():
+    detectors = []
+    for pair, values in settings.DETECTION_PAIRS:
+        print "Initializing pair {}".format(pair)
+        detector = PirDetector(values["pir"], pair)
+        detector.setup()
+        detectors.append(detector)
+        Light(values["light"], pair, detector)
+    return detectors
 
 def run_daemon():
-    print "Starting Detector daemon"
-    detector = PirDetector()
-    detector.setup()
+    detectors = initialize_detection_pairs()
     while True:
-        detector.detect_motion()
+        for detector in detectors:
+            detector.detect_motion()
         time.sleep(TIME_TO_SLEEP)
 
 if __name__ == "__main__":

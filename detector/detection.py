@@ -11,22 +11,24 @@ import signals
 
 class PirDetector(object):
 
-    GPIO_PIR = 7
     TIME_TO_SLEEP = 0.01
 
-    def __init__(self):
+    def __init__(self, gpio_nb, name):
         # state 1 means motion is detected (and signal is sent)
         self.current_state = 0
         self.previous_state = 0
+        # gpio_nb is the gpio number associated with the detector
+        self.gpio_nb = gpio_nb
+        self.name = name
 
     def setup(self):
-        GPIO.setup(self.GPIO_PIR, GPIO.IN)
-        while GPIO.input(self.GPIO_PIR) == 1:
+        GPIO.setup(self.gpio_nb, GPIO.IN)
+        while GPIO.input(self.gpio_nb) == 1:
             time.sleep(0.01)
         signals.setup.send(self)
 
     def detect_motion(self):
-        self.current_state = GPIO.input(self.GPIO_PIR)
+        self.current_state = GPIO.input(self.gpio_nb)
         if self._has_detected_new_motion():
             signals.motion.send(self)
             self.previous_state = 1
