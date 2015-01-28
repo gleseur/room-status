@@ -18,7 +18,7 @@ if (Meteor.isServer) {
                 $gte: moment().subtract('month', 1).toDate()
             }
         });
-    }
+    });
 }
 
 if (Meteor.isClient) {
