@@ -16,4 +16,5 @@ DETECTION_PAIRS = {
     }
 }
 
-METEOR_API_URL = "wc-status.meteor.com"
+METEOR_API_URL = "http://wc-status.meteor.com"
+METEOR_PASSWORD = local_settings.METEOR_PASSWORD

@@ -31,8 +31,8 @@ def initialize_detection_pairs():
         # Subscribing listeners
         rbs = RoomBusyStatus(pair_name, values["free_time"], values["lock_time"], detector)
         room_statuses.append(rbs)
-        Light(values["light"], pair_name, detector)
-        ApiListener(values["room_id"], rbs)
+        Light(values["light"], pair_name, rbs)
+        ApiListener(pair_name, values["room_id"], rbs)
     return detectors, room_statuses
 
 def run_daemon():
