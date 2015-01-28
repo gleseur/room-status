@@ -1,14 +1,24 @@
+<!DOCTYPE html>
+<html>
 <head>
-  <title>room-status</title>
+<title>Bathroom Status</title>
+<link href="icomoon/style.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- <script src="functions.js"></script> -->
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+  <section class="man status free">
+    <!-- <div class="icon icon-room-man show"></div> -->
+    <div class="icon icon-room-man-free show"></div>
+  </section>
+
+  <section class="woman status busy">
+    <div class="icon icon-room-woman show"></div>
+    <!-- <div class="icon icon-room-woman-free show"></div> -->
+  </section>
+
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
+</html>
