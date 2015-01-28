@@ -1,1 +1,44 @@
-/* CSS declarations go here */
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  display: table;
+  width: 50%;
+  height: 100%;
+}
+
+section.man {
+  float: left;
+}
+
+section.woman {
+  float: right;
+}
+
+.status {
+  transition: background-color 0.3s ease;
+  background-color: white;
+}
+
+.status.busy {
+  background-color: #e74c3c;
+}
+
+.status.free {
+  background-color: #2ecc71;
+}
+
+.icon {
+  display: table-cell;
+  font-size: 65.0vh;
+  color: #fff;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.show {
+  display: table-cell
+}
