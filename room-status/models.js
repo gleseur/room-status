@@ -25,8 +25,6 @@ if (Meteor.isClient) {
     Meteor.subscribe("busy_times");
 }
 
-BusyTime.BUSY == "busy";
-BusyTime.FREE == "free";
 BusyTime.getLast = function (room_id) {
     return BusyTime.find(
         {room_id: room_id},
