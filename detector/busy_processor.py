@@ -25,7 +25,7 @@ class RoomBusyStatus(object):
         signals.motion.connect(self.get_busy, sender=self.paired_detector)
 
     def get_busy(self, sender):
-        if self.seconds_to_now(self.got_idle_at) > self.lock_time:
+        if self.seconds_to_now(self.got_idle_at) < self.lock_time:
             return
         if not self.is_busy:
             signals.busy.send(self)
