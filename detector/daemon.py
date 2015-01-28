@@ -8,7 +8,11 @@ from detection import PirDetector
 import RPi.GPIO as GPIO
 import time
 
+# Importing motion listeners
+import listener.raspberry_out
+
 TIME_TO_SLEEP = 0.01
+
 
 def run_daemon():
     print "Starting Detector daemon"

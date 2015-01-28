@@ -6,6 +6,8 @@ from __future__ import unicode_literals
 
 import RPi.GPIO as GPIO
 
+import signals
+
 
 class PirDetector(object):
 
@@ -22,15 +24,15 @@ class PirDetector(object):
         GPIO.setup(self.GPIO_PIR, GPIO.IN)
         while GPIO.input(self.GPIO_PIR) == 1:
             time.sleep(0.01)
-        print "We're all set or detection"
+        signals.setup.send(self)
 
     def detect_motion(self):
         self.current_state = GPIO.input(self.GPIO_PIR)
         if self._has_detected_new_motion():
-            print "Someone's in"
+            signals.motion.send(self)
             self.previous_state = 1
         if self._has_returned_to_idle():
-            print "Is somebody out there"
+            signals.idle.send(self)
             self.previous_state = 0
 
     def _has_detected_new_motion(self):
