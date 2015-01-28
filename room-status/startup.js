@@ -18,7 +18,7 @@ if (Meteor.isServer) {
         BusyTime.insert({
             room_id: 2,
             opened_at: moment().toDate(),
-            status: "busy"
+            status: "free"
         });
     });
 }
