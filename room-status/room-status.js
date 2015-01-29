@@ -1,15 +1,15 @@
 if (Meteor.isClient) {
-  Template.registerHelper("equals", function (a, b) {
-      return (a == b);
-  });
-
-  Session.setDefault('view', 'main');
+  Session.setDefault('view_stats', false);
 
   Template.main.helpers({
-      view: function () {return Session.get('view')},
+      view_stats: function () {return Session.get('view_stats')},
       rooms: function () {return Room.find().fetch()},
       stats: function () {return Stats.find().fetch();}
   });
+
+  Template.main.events = {
+    'click .btn': function () {Session.set('view_stats', !Session.get('view_stats'))}
+  }
 
   Template.room.helpers({
       room_status: function () { return BusyTime.getLast(this.room_id).status;},
