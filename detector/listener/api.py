@@ -18,6 +18,10 @@ def send_freed_to_api(sender):
     SUBSCRIBED_LISTENERS[sender.name].send_to_api("free")
 
 
+retriable_adapter = requests.adapters.HTTPAdapter(max_retries=5)
+session = requests.Session()
+session.mount("http://wc-status.meteor.com", retriable_adapter)
+
 class ApiListener(object):
 
     API_BUSY = ""
@@ -36,7 +40,7 @@ class ApiListener(object):
     def send_to_api(self, status):
         url = settings.METEOR_API_URL + "/set_status/{room_id}/{status}".format(room_id=self.room_id, status=status)
         try:
-            r = requests.get(url, params={"pwd": settings.METEOR_PASSWORD})
+            r = session.get(url, params={"pwd": settings.METEOR_PASSWORD})
         except requests.exceptions.ConnectionError:
             print "Could not reach API"
         else:
