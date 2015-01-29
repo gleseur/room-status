@@ -1,14 +1,6 @@
 if (Meteor.isServer) {
     Pwd = new Meteor.Collection("pwd");
     HTTP.methods({
-      '/set_pwd/:pwd': function () {
-          if (Pwd.findOne()) {
-              this.setStatusCode(401);
-          } else {
-              Pwd.insert({value: this.params.pwd});
-          }
-      },
-
       'set_status/:room_id/:status': function () {
           var pwd = Pwd.findOne()
           if (pwd && this.query.pwd && pwd.value === this.query.pwd) {
