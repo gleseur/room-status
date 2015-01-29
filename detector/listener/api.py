@@ -35,5 +35,9 @@ class ApiListener(object):
 
     def send_to_api(self, status):
         url = settings.METEOR_API_URL + "/set_status/{room_id}/{status}".format(room_id=self.room_id, status=status)
-        r = requests.get(url, params={"pwd": settings.METEOR_PASSWORD})
-        print "Response status {}".format(r.status_code)
+        try:
+            r = requests.get(url, params={"pwd": settings.METEOR_PASSWORD})
+        except requests.exceptions.ConnectionError:
+            print "Could not reach API"
+        else:
+            print "Response status {}".format(r.status_code)
