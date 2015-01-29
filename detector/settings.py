@@ -11,14 +11,14 @@ DETECTION_PAIRS = {
         "room_id": 1,  # To communicate with Meteor API
         "pir": 7,
         "light": 17,
-        "free_time": 20,  # time in seconds after which we deem the room freed
+        "free_time": 30,  # time in seconds after which we deem the room freed
         "lock_time": 1,  # time in seconds before which we deem there can be someone else in the room
     },
     "female": {
         "room_id": 2,  # To communicate with Meteor API
         "pir": 8,
         "light": 23,
-        "free_time": 20,  # time in seconds after which we deem the room freed
+        "free_time": 30,  # time in seconds after which we deem the room freed
         "lock_time": 1,  # time in seconds before which we deem there can be someone else in the room
     }
 }
