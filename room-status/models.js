@@ -51,7 +51,7 @@ if (Meteor.isClient) {
     Meteor.subscribe("rooms");
 }
 
-Stats = new Meteor.Collection('stats');
+Stats = new Meteor.Collection('usage_stats');
 // name
 // text
 // value
