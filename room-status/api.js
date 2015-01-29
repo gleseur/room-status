@@ -34,7 +34,7 @@ if (Meteor.isServer) {
 
     function incStats(room_id, end_of_previous, start_of_current) {
         var name = (room_id == 1) ? "man_count_day" : "woman_count_day";
-        var same_day = end_of_previous.day() == start_of_current.day;
+        var same_day = end_of_previous.day() == start_of_current.day();
         var setter = same_day ? {$inc: {value: 1}} : {$set: {value: 1}};
         Stats.update({name: name}, setter);
         Stats.update({name: "day_count"}, setter);
