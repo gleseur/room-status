@@ -34,10 +34,13 @@ if (Meteor.isServer) {
 
     function incStats(room_id, end_of_previous, start_of_current) {
         var name = (room_id == 1) ? "man_count_day" : "woman_count_day";
-        var same_day = end_of_previous.day() == start_of_current.day();
+        var same_day = end_of_previous.format("D") == start_of_current.format("D");
         var setter = same_day ? {$inc: {value: 1}} : {$set: {value: 1}};
         Stats.update({name: name}, setter);
-        Stats.update({name: "day_count"}, setter);
+        var today = start_of_current.format("YYYY-MM-DD")
+        var current_day_stat = Stats.findOne({name: "day_count", today: today});
+        var day_setter = current_day_stat ? {$inc: {value: 1}} : {$set: {value: 1, today: today}};
+        Stats.update({name: "day_count"}, day_setter);
         Stats.update({name: "total_count"}, {$inc: {value: 1}});
     }
 
