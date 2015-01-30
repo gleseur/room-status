@@ -24,29 +24,34 @@ if (Meteor.isServer) {
         }
         if (Stats.find().count() == 0) {
             Stats.insert({
-                text: "How Much Men's Today?",
+                text: "How Many Men's Today?",
                 name: "man_count_day",
-                value: 0
+                value: 0,
+                order: 0
             });
             Stats.insert({
-                text: "How Much Women's Today?",
+                text: "How Many Women's Today?",
                 name: "woman_count_day",
-                value: 0
+                value: 0,
+                order: 1
             });
             Stats.insert({
                 text: "Today's Usage",
                 name: "day_count",
-                value: 0
+                value: 0,
+                order: 2
             });
             Stats.insert({
-                text: "Total Number of Bathroom Use",
+                text: "Total Usage",
                 name: "total_count",
-                value: 0
+                value: 0,
+                order: 3
             });
             Stats.insert({
                 text: "Longest Session",
                 name: "longest_session",
-                value: 0
+                value: 0,
+                order: 4
             });
         }
     });

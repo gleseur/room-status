@@ -4,7 +4,7 @@ if (Meteor.isClient) {
   Template.main.helpers({
       view_stats: function () {return Session.get('view_stats')},
       rooms: function () {return Room.find().fetch()},
-      stats: function () {return Stats.find().fetch();}
+      stats: function () {return Stats.find({}, {sort: {order: 1}}).fetch();}
   });
 
   Template.main.events = {
