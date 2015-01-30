@@ -16,7 +16,7 @@ if (Meteor.isServer) {
     Meteor.publish("busy_times", function () {
         return BusyTime.find({
             opened_at: {
-                $gte: moment().subtract(1, 'month').toDate()
+                $gte: moment().subtract(3, 'days').toDate()
             }
         });
     });
