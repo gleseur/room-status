@@ -10,17 +10,15 @@ if (Meteor.isServer) {
                 text: "woman"
             });
         }
-        if (BusyTime.find().count() == 0) {
-            BusyTime.insert({
-                room_id: 1,
-                opened_at: moment().toDate(),
-                status: "free"
-            });
-            BusyTime.insert({
-                room_id: 2,
-                opened_at: moment().toDate(),
-                status: "free"
-            });
+        var room_id;
+        for (room_id=1; room_id <= 2; room_id++) {
+            if (BusyTime.find({room_id: room_id}).count() == 0) {
+                BusyTime.insert({
+                    room_id: room_id,
+                    opened_at: moment().toDate(),
+                    status: "free"
+                });
+            }
         }
         if (Stats.find().count() == 0) {
             Stats.insert({
@@ -54,5 +52,14 @@ if (Meteor.isServer) {
                 order: 4
             });
         }
+        var hour;
+        for (hour=0; hour < 24; hour++) {
+            if (HourlyStats.find({hour: hour}).count() == 0) {
+                HourlyStats.insert({
+                    hour: hour,
+                    value: 0
+                });
+             }
+         }
     });
 }

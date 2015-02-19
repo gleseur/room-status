@@ -67,3 +67,19 @@ if (Meteor.isServer) {
 if (Meteor.isClient) {
     Meteor.subscribe("stats");
 }
+
+HourlyStats = new Meteor.Collection('hourly_stats');
+// hour
+// value
+
+// Nothing allowed
+// publish all
+if (Meteor.isServer) {
+    Meteor.publish("hourly_stats", function () {
+        return HourlyStats.find();
+    });
+}
+
+if (Meteor.isClient) {
+    Meteor.subscribe("hourly_stats");
+}

@@ -42,6 +42,7 @@ if (Meteor.isServer) {
         var day_setter = current_day_stat ? {$inc: {value: 1}} : {$set: {value: 1, today: today}};
         Stats.update({name: "day_count"}, day_setter);
         Stats.update({name: "total_count"}, {$inc: {value: 1}});
+        HourlyStats.update({hour: moment().hour()}, {$inc: {value: 1}})
     }
 
     function checkLongest(start, end) {
