@@ -33,16 +33,19 @@ if (Meteor.isServer) {
     });
 
     function incStats(room_id, end_of_previous, start_of_current) {
+        var inc = {$inc: {value: 1}};
         var name = (room_id == 1) ? "man_count_day" : "woman_count_day";
         var same_day = end_of_previous.format("D") == start_of_current.format("D");
-        var setter = same_day ? {$inc: {value: 1}} : {$set: {value: 1}};
+        var setter = same_day ? inc : {$set: {value: 1}};
         Stats.update({name: name}, setter);
         var today = start_of_current.format("YYYY-MM-DD")
         var current_day_stat = Stats.findOne({name: "day_count", today: today});
-        var day_setter = current_day_stat ? {$inc: {value: 1}} : {$set: {value: 1, today: today}};
+        var day_setter = current_day_stat ? inc : {$set: {value: 1, today: today}};
         Stats.update({name: "day_count"}, day_setter);
-        Stats.update({name: "total_count"}, {$inc: {value: 1}});
-        HourlyStats.update({hour: moment().hour()}, {$inc: {value: 1}})
+        Stats.update({name: "total_count"}, inc);
+        var hour = moment().hour() + 1; // booh hack for CET conversion. to be improved
+        HourlyStats.update({hour: hour}, inc);
+        RoomHourlyStats.update({hour: hour, room_id: room_id}, inc);
     }
 
     function checkLongest(start, end) {

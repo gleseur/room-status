@@ -83,3 +83,19 @@ if (Meteor.isServer) {
 if (Meteor.isClient) {
     Meteor.subscribe("hourly_stats");
 }
+
+RoomHourlyStats = new Meteor.Collection('room_hourly_stats');
+// hour
+// value
+
+// Nothing allowed
+// publish all
+if (Meteor.isServer) {
+    Meteor.publish("room_hourly_stats", function () {
+        return RoomHourlyStats.find();
+    });
+}
+
+if (Meteor.isClient) {
+    Meteor.subscribe("room_hourly_stats");
+}

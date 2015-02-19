@@ -59,7 +59,16 @@ if (Meteor.isServer) {
                     hour: hour,
                     value: 0
                 });
-             }
+            }
+            for (room_id=1; room_id <= 2; room_id++) {
+                if (RoomHourlyStats.find({hour: hour, room_id: room_id})) {
+                    RoomHourlyStats.insert({
+                        hour: hour,
+                        room_id: room_id,
+                        value: 0
+                    });
+                }
+            }
          }
     });
 }
