@@ -9,8 +9,15 @@ if (Meteor.isClient) {
   Template.stats.helpers({
       stats: function () {return Stats.find({}, {sort: {order: 1}}).fetch();},
       hourlies: function () {
-        var max = HourlyStats.find({}, {sort: {value: -1}, limit: 1}).fetch()[0].value;
-        return HourlyStats.find({}, {sort: {hour: 1}});
+        var max = (HourlyStats.find({}, {sort: {value: -1}, limit: 1}).fetch()[0] || {value: 0}).value || 1;
+        var res = [];
+        HourlyStats.find({}, {sort: {hour: 1}}).forEach(function (x) {
+          res.push({
+            hour: x.hour,
+            value: (100*x.value)/max
+          });
+        });
+        return res;
       }
   });
 
