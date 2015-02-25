@@ -14,7 +14,7 @@ if (Meteor.isClient) {
         HourlyStats.find({}, {sort: {hour: 1}}).forEach(function (x) {
           res.push({
             hour: x.hour,
-            value: (100*x.value)/max
+            value: Math.round((100*x.value)/max)
           });
         });
         return res;
