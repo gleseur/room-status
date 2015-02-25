@@ -31,8 +31,15 @@
   </div>
   <div class="timeline-wrapper">
     {{#each hourlies}}
-      <div>
-        {{hour}} => {{value}}
+      <div class="timeline-content">
+        <div class="timeline-value">
+          <span style="height: {{value}}%">
+            {{value}}
+          </span>
+        </div>
+        <div class="timeline-hour">
+          {{hour}}
+        </div>
       </div>
     {{/each}}
   </div>
