@@ -19,8 +19,8 @@ if (Meteor.isClient) {
   }
 
   Template.room.helpers({
-      room_status: function () { return BusyTime.getLast(this.room_id).status;},
-      busy: function () { return BusyTime.getLast(this.room_id).status == "busy";}
+      room_status: function () { return (BusyTime.getLast(this.room_id) || {status: "free"}).status;},
+      busy: function () { return (BusyTime.getLast(this.room_id) || {status: "free"}).status == "busy";}
   });
 
 
