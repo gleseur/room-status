@@ -12,10 +12,7 @@
 <template name="main">
   {{#if view_stats}}
     <section class="stats_content">
-    <div class="btn">View Room Status</div>
-    {{#each stats}}
-      {{> stat}}
-    {{/each}}
+      {{>stats}}
     </section>
   {{else}}
     <div class="btn">View Stats</div>
@@ -23,6 +20,22 @@
       {{> room}}
     {{/each}}
   {{/if}}
+</template>
+
+<template name="stats">
+<div class="btn">View Room Status</div>
+  <div class="stats-wrapper">
+    {{#each stats}}
+      {{> stat}}
+    {{/each}}
+  </div>
+  <div class="timeline-wrapper">
+    {{#each hourlies}}
+      <div>
+        {{hour}} => {{value}}
+      </div>
+    {{/each}}
+  </div>
 </template>
 
 <template name="room">

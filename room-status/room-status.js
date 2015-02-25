@@ -3,8 +3,15 @@ if (Meteor.isClient) {
 
   Template.main.helpers({
       view_stats: function () {return Session.get('view_stats')},
-      rooms: function () {return Room.find().fetch()},
-      stats: function () {return Stats.find({}, {sort: {order: 1}}).fetch();}
+      rooms: function () {return Room.find().fetch()}
+  });
+
+  Template.stats.helpers({
+      stats: function () {return Stats.find({}, {sort: {order: 1}}).fetch();},
+      hourlies: function () {
+        var max = HourlyStats.find({}, {sort: {value: -1}, limit: 1}).fetch()[0].value;
+        return HourlyStats.find({}, {sort: {hour: 1}});
+      }
   });
 
   Template.main.events = {
@@ -15,5 +22,6 @@ if (Meteor.isClient) {
       room_status: function () { return BusyTime.getLast(this.room_id).status;},
       busy: function () { return BusyTime.getLast(this.room_id).status == "busy";}
   });
+
 
 }
