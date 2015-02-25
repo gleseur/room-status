@@ -26,6 +26,7 @@ html, body {
   font-size: 15px;
   text-transform: uppercase;
   cursor: pointer;
+  z-index: 2000;
 }
 
 section {
